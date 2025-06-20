@@ -1,9 +1,14 @@
-exports.getAll = (req, res) => {
-  // TODO: fetch all users
-  res.json([]);
+const User = require('../models/user');
+
+exports.getAll = async (req, res) => {
+  const users = await User.findAll();
+  res.json(users);
 };
 
-exports.getById = (req, res) => {
-  // TODO: fetch user by id
-  res.json({ id: req.params.id });
+exports.getById = async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+  res.json(user);
 };
