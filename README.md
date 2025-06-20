@@ -46,3 +46,19 @@ The `users` table now stores extended profile information such as `username`,
 - `GET /api/classes/:id/members` – list members of a class (requires auth)
 
 
+
+## Configuration
+
+Before starting the server, set the `DATABASE_URL` environment variable to point to your PostgreSQL instance. The connection string format is:
+
+```
+postgres://<username>:<password>@<host>:<port>/<database>
+```
+
+Example for a local database:
+
+```bash
+export DATABASE_URL=postgres://postgres:secret@localhost:5432/cat
+```
+
+If the database or user does not exist, create them first using `createdb` and `createuser` (or through your database administration tool).
