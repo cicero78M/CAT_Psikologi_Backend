@@ -34,6 +34,13 @@ CREATE TABLE IF NOT EXISTS difficulty_levels (
     name TEXT
 );
 
+-- Question banks
+CREATE TABLE IF NOT EXISTS question_banks (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT
+);
+
 -- Questions table
 CREATE TABLE IF NOT EXISTS questions (
     id SERIAL PRIMARY KEY,
@@ -54,6 +61,13 @@ CREATE TABLE IF NOT EXISTS question_categories (
     question_id INTEGER REFERENCES questions(id),
     category_id INTEGER REFERENCES categories(id),
     PRIMARY KEY (question_id, category_id)
+);
+
+-- Mapping questions to banks
+CREATE TABLE IF NOT EXISTS question_bank_questions (
+    question_id INTEGER REFERENCES questions(id),
+    bank_id INTEGER REFERENCES question_banks(id),
+    PRIMARY KEY (question_id, bank_id)
 );
 
 -- Exams and schedule
