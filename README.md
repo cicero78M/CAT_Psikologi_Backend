@@ -38,4 +38,11 @@ The `users` table now stores extended profile information such as `username`,
 - `GET /api/question-banks` – list question banks (requires auth)
 - `GET /api/question-banks/:id` – get bank by id (requires auth)
 
+## Class Management
+- `POST /api/classes` – create a class (requires auth)
+- `GET /api/classes` – list classes (requires auth)
+- `GET /api/classes/:id` – get class by id (requires auth)
+- `POST /api/classes/join` – join a class with invite code (requires auth)
+- `GET /api/classes/:id/members` – list members of a class (requires auth)
+
 
