@@ -1,5 +1,8 @@
-exports.create = (req, res) => {
-  // TODO: create question
+const rabbit = require('../config/rabbitmq');
+
+exports.create = async (req, res) => {
+  // TODO: create question in database
+  await rabbit.sendToQueue('questions', { action: 'create', data: req.body });
   res.json({ message: 'created' });
 };
 
