@@ -4,8 +4,9 @@ This is a simple backend skeleton for a Computerized Adaptive Testing (CAT) appl
 
 ## Getting Started
 
-Install dependencies and start the development server. Ensure PostgreSQL is
-running and `DATABASE_URL` is configured:
+Install dependencies and start the development server. Environment variables can
+be placed in a `.env` file at the project root. Ensure PostgreSQL is running and
+`DATABASE_URL` is configured:
 
 ```bash
 npm install
@@ -49,7 +50,7 @@ The `users` table now stores extended profile information such as `username`,
 
 ## Configuration
 
-Before starting the server, set the `DATABASE_URL` environment variable to point to your PostgreSQL instance. The connection string format is:
+Before starting the server, set the following environment variables or create a `.env` file with these values. At minimum, `DATABASE_URL` should point to your PostgreSQL instance. The connection string format is:
 
 ```
 postgres://<username>:<password>@<host>:<port>/<database>
