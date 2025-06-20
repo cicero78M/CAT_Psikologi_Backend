@@ -63,3 +63,5 @@ export DATABASE_URL=postgres://postgres:secret@localhost:5432/cat
 ```
 
 If the database or user does not exist, create them first using `createdb` and `createuser` (or through your database administration tool).
+
+For lebih detail mengenai proses bisnis, konvensi penamaan, struktur database dan FAQ, lihat [docs/README.md](docs/README.md).
