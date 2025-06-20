@@ -21,4 +21,18 @@ node src/index.js
 - `src/middlewares/` - Express middlewares
 - `src/config/` - configuration files
 
+## User Profile
+
+The `users` table now stores extended profile information such as `username`,
+`full_name`, `avatar_url` and more. Passwords are stored as SHA-256 hashes in
+`password_hash`.
+
+### Endpoints
+
+- `POST /api/auth/register` – register a new user
+- `POST /api/auth/login` – obtain a JWT token
+- `GET /api/users` – list users (requires auth)
+- `GET /api/users/:id` – get user by id (requires auth)
+- `PUT /api/users/:id` – update profile fields (requires auth)
+
 
