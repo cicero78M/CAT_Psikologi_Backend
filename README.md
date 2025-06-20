@@ -34,5 +34,8 @@ The `users` table now stores extended profile information such as `username`,
 - `GET /api/users` – list users (requires auth)
 - `GET /api/users/:id` – get user by id (requires auth)
 - `PUT /api/users/:id` – update profile fields (requires auth)
+- `POST /api/question-banks` – create a question bank (requires auth)
+- `GET /api/question-banks` – list question banks (requires auth)
+- `GET /api/question-banks/:id` – get bank by id (requires auth)
 
 
