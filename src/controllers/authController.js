@@ -1,11 +1,16 @@
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 const redisClient = require('../config/redis');
 const rabbit = require('../config/rabbitmq');
 const User = require('../models/user');
 
 exports.register = async (req, res) => {
   try {
-    const user = await User.create(req.body.email, req.body.password);
+    const passwordHash = crypto
+      .createHash('sha256')
+      .update(req.body.password)
+      .digest('hex');
+    const user = await User.create(req.body.email, passwordHash);
     await rabbit.sendToQueue('users', { action: 'register', email: user.email });
     res.json({ id: user.id, email: user.email });
   } catch (err) {
@@ -17,7 +22,11 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const user = await User.findByEmail(req.body.email);
-    if (!user || user.password !== req.body.password) {
+    const passwordHash = crypto
+      .createHash('sha256')
+      .update(req.body.password)
+      .digest('hex');
+    if (!user || user.password_hash !== passwordHash) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     const payload = { id: user.id, email: user.email };
